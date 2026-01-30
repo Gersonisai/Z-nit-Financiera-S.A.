@@ -3,709 +3,1305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zénit Financiera S.A. | Servicios Financieros en Bolivia</title>
-    <meta name="description" content="Zénit Financiera S.A. ofrece servicios de crédito, financiación de proyectos, gestión de activos e inversiones en Bolivia. Parte del Grupo Zénit.">
+    <title>Zénit Financiera S.A. | Servicios Financieros y Créditos</title>
+    <meta name="description" content="Entidad financiera especializada en otorgamiento de créditos y financiación de proyectos comerciales, productivos y de servicio. Supervisada por ASFI.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #1a3a5f;
-            --secondary: #2c5a8a;
-            --accent: #e6a23c;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --success: #28a745;
+            /* Paleta corporativa Zénit con toques financieros */
+            --primary-dark: #0a1628;
+            --primary-navy: #1a2942;
+            --accent-gold: #c9a961;
+            --accent-gold-light: #e4d4a8;
+            --accent-emerald: #0f5d4a;
+            --accent-emerald-light: #1a7d66;
+            --accent-teal: #0e8677;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-mint: #f0f9f7;
+            --border-subtle: #e2e8f0;
+            
+            /* Typography */
+            --font-display: 'Crimson Pro', serif;
+            --font-body: 'Work Sans', sans-serif;
+            
+            /* Spacing */
+            --section-padding: clamp(4rem, 8vw, 8rem);
+            --container-max: 1280px;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        html {
-            scroll-behavior: smooth;
         }
         
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            font-family: var(--font-body);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--bg-white);
         }
         
-        /* Header Styles */
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
         
-        .container {
-            width: 90%;
-            max-width: 1200px;
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        nav {
+            max-width: var(--container-max);
             margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .header-content {
+            padding: 1.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo h1 {
+            font-family: var(--font-display);
             font-size: 1.5rem;
             font-weight: 700;
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        nav ul {
+            color: var(--primary-dark);
+            text-decoration: none;
+            letter-spacing: -0.02em;
             display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            font-size: 1.75rem;
+        }
+        
+        .logo-accent {
+            color: var(--accent-emerald);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
             list-style: none;
         }
         
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-        
-        nav ul li a {
-            color: white;
+        .nav-links a {
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
             position: relative;
-            font-size: 0.9rem;
         }
         
-        nav ul li a:hover {
-            color: var(--accent);
+        .nav-links a:hover {
+            color: var(--accent-emerald);
         }
         
-        nav ul li a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -4px;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s;
+            background: var(--accent-emerald);
+            transition: width 0.3s ease;
         }
         
-        nav ul li a:hover::after {
+        .nav-links a:hover::after {
             width: 100%;
         }
         
-        .mobile-menu {
+        .mobile-menu-btn {
             display: none;
-            font-size: 1.5rem;
+            background: none;
+            border: none;
             cursor: pointer;
-            color: white;
+            padding: 0.5rem;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--primary-dark);
+            margin: 5px 0;
+            transition: 0.3s;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(26,58,95,0.8), rgba(26,58,95,0.9)), url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .hero h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        
-        .btn:hover {
-            background-color: #d18a1a;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        /* Section Styles */
-        section {
-            padding: 3rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .section-title h2 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-        
-        .section-title p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 0.95rem;
-        }
-        
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .service-header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1.2rem;
-            text-align: center;
-        }
-        
-        .service-body {
-            padding: 1.2rem;
-        }
-        
-        .service-body h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        /* About Section */
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .company-info {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-top: 1.5rem;
-        }
-        
-        .company-info h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        
-        .company-contact {
+            margin-top: 80px;
+            min-height: 92vh;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 1rem;
+            background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-teal) 100%);
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Contact Section */
-        .contact-container {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 75% 25%, rgba(201, 169, 97, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 25% 75%, rgba(228, 212, 168, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .breadcrumb {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-gold-light);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            color: var(--bg-white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 680px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+        
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
             gap: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
         }
         
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-item {
+        .hero-feature {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.2rem;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.05rem;
         }
         
-        .contact-icon {
-            background-color: var(--primary);
-            color: white;
-            width: 35px;
-            height: 35px;
+        .hero-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-            font-size: 0.9rem;
+            font-size: 1.25rem;
         }
         
-        .contact-message {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        /* Stats Section */
+        .stats {
+            padding: var(--section-padding) 2rem;
+            background: var(--primary-dark);
+            color: var(--bg-white);
+        }
+        
+        .stats-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+        }
+        
+        .stat-item {
             text-align: center;
-            margin-top: 1.5rem;
+        }
+        
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-bottom: 0.75rem;
+        }
+        
+        .stat-label {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: var(--section-padding) 2rem;
+            background: var(--bg-white);
+        }
+        
+        .services-header {
+            max-width: var(--container-max);
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+        
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-emerald);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .section-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .services-grid {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-subtle);
+            padding: 3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-teal));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-emerald-light);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-emerald-light), var(--accent-emerald));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-title {
+            font-family: var(--font-display);
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .service-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .service-features li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            color: var(--accent-emerald);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        /* Requirements Section */
+        .requirements {
+            padding: var(--section-padding) 2rem;
+            background: var(--bg-mint);
+        }
+        
+        .requirements-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        
+        .requirements-content h2 {
+            margin-bottom: 2rem;
+        }
+        
+        .requirements-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .requirements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .requirement-item {
+            display: flex;
+            gap: 1.25rem;
+        }
+        
+        .requirement-number {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: var(--accent-emerald);
+            color: var(--bg-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .requirement-text {
+            padding-top: 0.5rem;
+        }
+        
+        .requirement-text h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .requirement-text p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        /* Regulation Section */
+        .regulation {
+            padding: var(--section-padding) 2rem;
+            background: var(--primary-dark);
+            color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .regulation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 30%, rgba(26, 125, 102, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 70%, rgba(201, 169, 97, 0.12) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .regulation-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .regulation-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .regulation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .regulation-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .regulation-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+        }
+        
+        .regulation-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .regulation-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .regulation-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+        
+        /* Investment Section */
+        .investment {
+            padding: var(--section-padding) 2rem;
+            background: var(--bg-white);
+        }
+        
+        .investment-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+        
+        .investment-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .investment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .investment-card {
+            background: var(--bg-light);
+            padding: 3rem;
+            border-left: 4px solid var(--accent-emerald);
+            transition: all 0.3s ease;
+        }
+        
+        .investment-card:hover {
+            background: var(--bg-white);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-left-width: 6px;
+        }
+        
+        .investment-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .investment-amount {
+            font-family: var(--font-display);
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--accent-emerald);
+            margin-bottom: 1rem;
+        }
+        
+        .investment-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: var(--section-padding) 2rem;
+            background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-teal) 100%);
+            color: var(--bg-white);
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--bg-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .cta p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--bg-white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--bg-white);
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 2rem 0 1rem;
+            background: var(--primary-navy);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4rem 2rem 2rem;
         }
         
         .footer-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bg-white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .footer-section h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bg-white);
             margin-bottom: 1.5rem;
         }
         
-        .footer-column {
-            flex: 1;
-        }
-        
-        .footer-column h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        .footer-column ul {
+        .footer-links {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
         }
         
-        .footer-column ul li {
-            margin-bottom: 0.6rem;
-        }
-        
-        .footer-column ul li a {
-            color: #ccc;
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
-            transition: color 0.3s;
             font-size: 0.9rem;
+            transition: color 0.3s ease;
         }
         
-        .footer-column ul li a:hover {
-            color: white;
+        .footer-links a:hover {
+            color: var(--accent-gold);
         }
         
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid #444;
-            color: #aaa;
-            font-size: 0.8rem;
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
         }
         
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .hero {
-                padding: 5rem 0;
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-legal a:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .requirements-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
             
-            .hero h2 {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: clamp(3rem, 6vw, 4rem);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
                 font-size: 2.5rem;
             }
             
-            .about-content {
-                flex-direction: row;
-            }
-            
-            .contact-container {
-                flex-direction: row;
-            }
-            
-            .footer-content {
-                flex-direction: row;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            .logo h1 {
-                font-size: 1.3rem;
-            }
-            
-            nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--primary);
-                padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-            
-            nav.active {
-                display: block;
-            }
-            
-            nav ul {
+            .hero-features {
                 flex-direction: column;
             }
             
-            nav ul li {
-                margin: 0.5rem 0;
+            .stats-container {
+                gap: 2.5rem;
             }
             
-            .mobile-menu {
-                display: block;
+            .services-grid,
+            .regulation-grid,
+            .investment-grid {
+                grid-template-columns: 1fr;
             }
             
-            .hero h2 {
-                font-size: 1.8rem;
+            .cta-buttons {
+                flex-direction: column;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .btn {
+                text-align: center;
+                width: 100%;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
         
         @media (max-width: 480px) {
-            .container {
-                width: 95%;
+            nav {
+                padding: 1rem 1.5rem;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
+            .hero-content,
+            .stats,
+            .services,
+            .requirements,
+            .regulation,
+            .investment,
+            .cta,
+            footer {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            
+            .service-card,
+            .regulation-card,
+            .investment-card {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>ZÉNIT <span>FINANCIERA</span> S.A.</h1>
-                </div>
-                <div class="mobile-menu" aria-label="Abrir menú">☰</div>
-                <nav>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                        <li><a href="https://gersonisai.github.io/GRUPO-Z-NIT-S.A./" target="_blank">Grupo Zénit</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                <span class="logo-icon">💰</span>
+                <span>Zénit <span class="logo-accent">Financiera</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#requisitos">Requisitos</a></li>
+                <li><a href="#regulacion">Regulación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero" aria-labelledby="hero-title">
-        <div class="container">
-            <h2 id="hero-title">Soluciones Financieras para el Desarrollo de Bolivia</h2>
-            <p>Zénit Financiera S.A. ofrece servicios de crédito, financiación de proyectos, gestión de activos e inversiones, contribuyendo al crecimiento económico nacional.</p>
-            <a href="#contacto" class="btn" aria-label="Solicitar información">Solicitar Información</a>
-        </div>
-    </section>
-
-    <!-- Servicios -->
-    <section id="servicios" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Servicios</h2>
-                <p>Ofrecemos una amplia gama de servicios financieros adaptados a las necesidades de nuestros clientes</p>
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="https://grupo-z-nit-s-a-three.vercel.app/">GRUPO ZÉNIT</a>
+                <span>/</span>
+                <span>Financiera</span>
             </div>
-            <div class="services-grid">
-                <!-- Créditos -->
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Otorgamiento de Créditos</h3>
-                    </div>
-                    <div class="service-body">
-                        <h4>Financiamiento Personal y Empresarial</h4>
-                        <p>Ofrecemos líneas de crédito adaptadas a las necesidades específicas de personas y empresas, con tasas competitivas y plazos flexibles.</p>
-                    </div>
+            <div class="hero-subtitle">Filial de GRUPO ZÉNIT S.A.</div>
+            <h1 class="hero-title">Soluciones Financieras para el Crecimiento</h1>
+            <p class="hero-description">
+                Entidad financiera especializada en otorgamiento de créditos y financiación de proyectos comerciales, productivos y de servicio. Operamos bajo supervisión de ASFI con los más altos estándares de calidad.
+            </p>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">✓</div>
+                    <span>Supervisada por ASFI</span>
                 </div>
-                
-                <!-- Financiación de Proyectos -->
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Financiación de Proyectos</h3>
-                    </div>
-                    <div class="service-body">
-                        <h4>Inversiones Estratégicas</h4>
-                        <p>Financiamos proyectos de terceros con potencial de crecimiento, evaluando su viabilidad y aportando capital para su desarrollo.</p>
-                    </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">✓</div>
+                    <span>Tasas Competitivas</span>
                 </div>
-                
-                <!-- Gestión de Activos -->
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Gestión de Activos</h3>
-                    </div>
-                    <div class="service-body">
-                        <h4>Optimización de Portafolios</h4>
-                        <p>Administramos y optimizamos carteras de activos para maximizar rendimientos y minimizar riesgos según el perfil de cada cliente.</p>
-                    </div>
-                </div>
-                
-                <!-- Inversiones en Bolsa -->
-                <div class="service-card">
-                    <div class="service-header">
-                        <h3>Inversiones en Bolsa</h3>
-                    </div>
-                    <div class="service-body">
-                        <h4>Mercados de Capitales</h4>
-                        <p>Asesoramos y ejecutamos operaciones en los mercados bursátiles, aprovechando oportunidades de inversión nacionales e internacionales.</p>
-                    </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">✓</div>
+                    <span>Atención Personalizada</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sobre Nosotros -->
-    <section id="nosotros" class="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Sobre Nosotros</h2>
-                <p>Conozca más sobre nuestra empresa y nuestro compromiso con el desarrollo financiero de Bolivia</p>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">Bs. 3.8M</div>
+                <div class="stat-label">Capital Inicial</div>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Nuestra Misión</h3>
-                    <p>Zénit Financiera S.A. es una empresa especializada en servicios financieros, constituida como parte del Grupo Zénit S.A. Nuestra misión es proporcionar soluciones financieras innovadoras y accesibles que impulsen el crecimiento económico de personas, empresas y proyectos en Bolivia.</p>
-                    <p>Operamos bajo la supervisión de la Autoridad de Supervisión del Sistema Financiero (ASFI), garantizando transparencia, seguridad y cumplimiento normativo en todas nuestras operaciones.</p>
-                    
-                    <div class="company-info">
-                        <h3>Información Corporativa</h3>
-                        <p><strong>Zénit Financiera S.A.</strong> es una sociedad anónima constituida bajo las leyes de Bolivia, con domicilio principal en Trinidad, Beni.</p>
-                        <p>Forma parte del holding empresarial <strong>GRUPO ZÉNIT S.A.</strong>, que ejerce la dirección estratégica y supervisión sobre nuestras operaciones.</p>
-                        <div class="company-contact">
-                            <span>📍</span>
-                            <p><strong>Zonas de Operación:</strong> Santa Cruz, La Paz, Cochabamba</p>
+            <div class="stat-item">
+                <div class="stat-number">Bs. 2.4M</div>
+                <div class="stat-label">Fondo de Operación</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">ASFI</div>
+                <div class="stat-label">Supervisión Regulatoria</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Ciudades Principales</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="services-header">
+            <div class="section-label">Nuestros Productos</div>
+            <h2 class="section-title">Servicios Financieros Especializados</h2>
+            <p class="section-description">
+                Ofrecemos soluciones de financiamiento adaptadas a las necesidades específicas de empresas y personas naturales.
+            </p>
+        </div>
+        <div class="services-grid">
+            <!-- Créditos Comerciales -->
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3 class="service-title">Créditos Comerciales</h3>
+                <p class="service-description">
+                    Financiamiento para capital de trabajo, adquisición de activos fijos, expansión de negocios y proyectos de inversión comercial.
+                </p>
+                <ul class="service-features">
+                    <li>Capital de trabajo para empresas</li>
+                    <li>Financiamiento de activos productivos</li>
+                    <li>Líneas de crédito revolvente</li>
+                    <li>Créditos para expansión comercial</li>
+                    <li>Tasas preferenciales para clientes recurrentes</li>
+                </ul>
+            </div>
+
+            <!-- Créditos Productivos -->
+            <div class="service-card">
+                <div class="service-icon">🏭</div>
+                <h3 class="service-title">Créditos Productivos</h3>
+                <p class="service-description">
+                    Financiación de proyectos productivos en sectores agropecuario, industrial, manufacturero y de servicios especializados.
+                </p>
+                <ul class="service-features">
+                    <li>Proyectos agropecuarios e industriales</li>
+                    <li>Modernización de equipamiento</li>
+                    <li>Inversión en infraestructura productiva</li>
+                    <li>Plazos ajustados al ciclo productivo</li>
+                    <li>Asesoría técnica especializada</li>
+                </ul>
+            </div>
+
+            <!-- Financiación de Proyectos -->
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3 class="service-title">Financiación de Proyectos</h3>
+                <p class="service-description">
+                    Análisis, estructuración y financiamiento de proyectos de mediano y largo plazo con evaluación técnica y financiera integral.
+                </p>
+                <ul class="service-features">
+                    <li>Evaluación técnico-financiera de proyectos</li>
+                    <li>Estructuración de financiamiento</li>
+                    <li>Plazos de hasta 10 años</li>
+                    <li>Períodos de gracia disponibles</li>
+                    <li>Seguimiento y monitoreo de inversión</li>
+                </ul>
+            </div>
+
+            <!-- Gestión de Activos -->
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3 class="service-title">Gestión de Activos e Inversiones</h3>
+                <p class="service-description">
+                    Servicios de administración de cartera, inversiones en mercado de valores y asesoría financiera especializada.
+                </p>
+                <ul class="service-features">
+                    <li>Administración de portafolios de inversión</li>
+                    <li>Inversiones en bolsa de valores</li>
+                    <li>Asesoría financiera corporativa</li>
+                    <li>Análisis de riesgo y rentabilidad</li>
+                    <li>Reportes periódicos de rendimiento</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="requirements" id="requisitos">
+        <div class="requirements-container">
+            <div class="requirements-content">
+                <div class="section-label">Proceso de Solicitud</div>
+                <h2 class="section-title">Requisitos para Créditos</h2>
+                <p class="requirements-text">
+                    Nuestro proceso de evaluación es transparente, ágil y profesional. Trabajamos con cada cliente para estructurar soluciones financieras adecuadas a su perfil y necesidades.
+                </p>
+                <div class="requirements-list">
+                    <div class="requirement-item">
+                        <div class="requirement-number">1</div>
+                        <div class="requirement-text">
+                            <h3>Documentación Legal</h3>
+                            <p>Cédula de identidad, NIT, testimonio de constitución (personas jurídicas), poder notariado del representante legal.</p>
                         </div>
+                    </div>
+                    <div class="requirement-item">
+                        <div class="requirement-number">2</div>
+                        <div class="requirement-text">
+                            <h3>Estados Financieros</h3>
+                            <p>Balance general y estado de resultados de los últimos 2 años, flujo de caja proyectado, declaraciones juradas de impuestos.</p>
+                        </div>
+                    </div>
+                    <div class="requirement-item">
+                        <div class="requirement-number">3</div>
+                        <div class="requirement-text">
+                            <h3>Plan de Inversión</h3>
+                            <p>Descripción detallada del proyecto, cronograma de inversión, análisis de mercado, proyecciones financieras.</p>
+                        </div>
+                    </div>
+                    <div class="requirement-item">
+                        <div class="requirement-number">4</div>
+                        <div class="requirement-text">
+                            <h3>Garantías</h3>
+                            <p>Garantías reales (hipotecarias o prendarias), avales personales o corporativos, pólizas de seguro según corresponda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="requirements-visual">
+                <div class="section-label">Ventajas Competitivas</div>
+                <h3 class="section-title" style="font-size: 2rem; margin-bottom: 1.5rem;">¿Por Qué Elegirnos?</h3>
+                <div style="background: var(--bg-white); padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-emerald); margin-bottom: 0.75rem;">⚡ Aprobación Rápida</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">Proceso de evaluación eficiente con respuesta en 72 horas hábiles para créditos estándar.</p>
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-emerald); margin-bottom: 0.75rem;">💡 Asesoría Personalizada</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">Equipo especializado que acompaña en la estructuración óptima del financiamiento.</p>
+                    </div>
+                    <div>
+                        <h4 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-emerald); margin-bottom: 0.75rem;">🛡️ Seguridad y Confianza</h4>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">Respaldados por GRUPO ZÉNIT S.A. y bajo supervisión de la Autoridad de Supervisión del Sistema Financiero (ASFI).</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contacto</h2>
-                <p>Póngase en contacto con nosotros para más información sobre nuestros servicios</p>
+    <!-- Regulation Section -->
+    <section class="regulation" id="regulacion">
+        <div class="regulation-container">
+            <div class="regulation-header">
+                <div class="section-label" style="color: var(--accent-gold-light);">Cumplimiento Normativo</div>
+                <h2 class="section-title" style="color: var(--bg-white);">Marco Regulatorio</h2>
+                <p class="section-description" style="color: rgba(255, 255, 255, 0.8);">
+                    Operamos bajo estricto cumplimiento de la normativa financiera boliviana y estándares internacionales de banca responsable.
+                </p>
             </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3 style="color:var(--primary); margin-bottom:1.5rem;">Información de Contacto</h3>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h4>Dirección Principal</h4>
-                            <p>Trinidad, Beni, Bolivia</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>Email Corporativo</h4>
-                            <p><a href="mailto:gersonisaimachuaoniava@gmail.com">gersonisaimachuaoniava@gmail.com</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">👤</div>
-                        <div>
-                            <h4>Contacto Principal</h4>
-                            <p>Gerson Isai Machua Oniava<br>Presidente del Directorio - Grupo Zénit<br>
-                               <a href="https://sites.google.com/view/gerson-isai-machua-oniava/inicio" target="_blank" style="color: var(--accent);">Sitio Personal</a>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">💼</div>
-                        <div>
-                            <h4>Regulación</h4>
-                            <p>Supervisada por la Autoridad de Supervisión del Sistema Financiero (ASFI)</p>
-                        </div>
-                    </div>
+            <div class="regulation-grid">
+                <div class="regulation-card">
+                    <span class="regulation-icon">⚖️</span>
+                    <h3>Ley N° 393</h3>
+                    <p>
+                        Cumplimiento total de la Ley de Servicios Financieros y regulaciones emitidas por la Autoridad de Supervisión del Sistema Financiero (ASFI).
+                    </p>
                 </div>
-                
-                <div class="contact-info">
-                    <h3 style="color:var(--primary); margin-bottom:1.5rem;">Proceso de Solicitud</h3>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">1</div>
-                        <div>
-                            <h4>Evaluación Inicial</h4>
-                            <p>Analizamos su perfil y necesidades financieras</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">2</div>
-                        <div>
-                            <h4>Documentación</h4>
-                            <p>Recopilamos la documentación necesaria según el tipo de servicio</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">3</div>
-                        <div>
-                            <h4>Análisis y Aprobación</h4>
-                            <p>Evaluamos la solicitud y determinamos la viabilidad</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">4</div>
-                        <div>
-                            <h4>Desembolso y Seguimiento</h4>
-                            <p>Ejecutamos la operación y realizamos seguimiento continuo</p>
-                        </div>
-                    </div>
+                <div class="regulation-card">
+                    <span class="regulation-icon">🏛️</span>
+                    <h3>Supervisión ASFI</h3>
+                    <p>
+                        Entidad supervisada por ASFI con reportes periódicos, auditorías externas y cumplimiento de ratios prudenciales de capital y liquidez.
+                    </p>
+                </div>
+                <div class="regulation-card">
+                    <span class="regulation-icon">🔒</span>
+                    <h3>Prevención de Lavado</h3>
+                    <p>
+                        Políticas estrictas de conocimiento del cliente (KYC), prevención de lavado de dinero y financiamiento del terrorismo según normativa vigente.
+                    </p>
+                </div>
+                <div class="regulation-card">
+                    <span class="regulation-icon">📋</span>
+                    <h3>Transparencia</h3>
+                    <p>
+                        Información clara sobre tasas de interés, comisiones, plazos y condiciones contractuales. Protección al consumidor financiero.
+                    </p>
                 </div>
             </div>
-            
-            <div class="contact-message">
-                <h3 style="color:var(--primary); margin-bottom:1rem;">¿Interesado en Nuestros Servicios?</h3>
-                <p>Para obtener información detallada sobre nuestros productos financieros, condiciones o programar una reunión, por favor contáctenos directamente a través de nuestro correo electrónico.</p>
-                <a href="mailto:gersonisaimachuaoniava@gmail.com" class="btn" style="margin-top:1.5rem;" aria-label="Enviar correo de interés">Solicitar Información</a>
+        </div>
+    </section>
+
+    <!-- Investment Section -->
+    <section class="investment">
+        <div class="investment-container">
+            <div class="investment-header">
+                <div class="section-label">Estructura de Capital</div>
+                <h2 class="section-title">Inversión y Operaciones</h2>
+                <p class="section-description">
+                    Estructura financiera sólida diseñada para garantizar operaciones sostenibles y crecimiento controlado.
+                </p>
+            </div>
+            <div class="investment-grid">
+                <div class="investment-card">
+                    <h3>Capital Social</h3>
+                    <div class="investment-amount">Bs. 3.8M</div>
+                    <p class="investment-description">
+                        Inversión inicial equivalente a $us 550,000 para inicio de operaciones financieras, incluyendo licencias ASFI e infraestructura tecnológica.
+                    </p>
+                </div>
+                <div class="investment-card">
+                    <h3>Costos Operativos</h3>
+                    <div class="investment-amount">Bs. 208K</div>
+                    <p class="investment-description">
+                        Mensuales, cubriendo salarios del equipo clave (analistas, gestores de cartera), gastos administrativos y tecnología financiera.
+                    </p>
+                </div>
+                <div class="investment-card">
+                    <h3>Infraestructura</h3>
+                    <div class="investment-amount">Bs. 1.04M</div>
+                    <p class="investment-description">
+                        Inversión en tecnología bancaria (software core banking, seguridad informática, servidores) y adecuación de oficinas principales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contacto">
+        <div class="cta-container">
+            <h2>¿Necesita Financiamiento para su Proyecto?</h2>
+            <p>
+                Contáctenos para una evaluación sin compromiso. Nuestro equipo de analistas está listo para estructurar la mejor solución financiera para su negocio.
+            </p>
+            <div class="cta-buttons">
+                <a href="mailto:gersonisaimachuaoniava@gmail.com" class="btn btn-primary">Solicitar Evaluación</a>
+                <a href="https://grupo-z-nit-s-a-three.vercel.app/" class="btn btn-secondary">Grupo Zénit</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>ZÉNIT FINANCIERA S.A.</h3>
-                    <p>Empresa especializada en servicios financieros, parte del Grupo Zénit S.A. Ofrecemos créditos, financiación de proyectos, gestión de activos e inversiones.</p>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-brand">Zénit Financiera</div>
+                    <p class="footer-description">
+                        Filial de GRUPO ZÉNIT S.A. especializada en otorgamiento de créditos y financiación de proyectos comerciales, productivos y de servicio. Entidad supervisada por ASFI.
+                    </p>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
+
+                <div class="footer-section">
+                    <h4>Productos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Créditos Comerciales</a></li>
+                        <li><a href="#servicios">Créditos Productivos</a></li>
+                        <li><a href="#servicios">Financiación de Proyectos</a></li>
+                        <li><a href="#servicios">Gestión de Activos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul class="footer-links">
                         <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#requisitos">Requisitos</a></li>
+                        <li><a href="#regulacion">Regulación</a></li>
                         <li><a href="#contacto">Contacto</a></li>
-                        <li><a href="https://gersonisai.github.io/GRUPO-Z-NIT-S.A./" target="_blank">Grupo Zénit</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <ul>
-                        <li>📍 Trinidad, Beni, Bolivia</li>
-                        <li>📧 <a href="mailto:gersonisaimachuaoniava@gmail.com" style="color:#ccc; text-decoration:none;">gersonisaimachuaoniava@gmail.com</a></li>
-                        <li>👤 <a href="https://sites.google.com/view/gerson-isai-machua-oniava/inicio" target="_blank" style="color:#ccc; text-decoration:none;">Gerson Isai Machua Oniava</a></li>
-                        <li>🏛️ Supervisada por ASFI</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Empresas del Grupo</h3>
-                    <ul>
-                        <li><a href="https://gersonisai.github.io/yasikari-web/" target="_blank">Yasikari Web</a></li>
-                        <li><a href="https://gersonisai.github.io/GRUPO-Z-NIT-S.A./" target="_blank">Grupo Zénit S.A.</a></li>
-                        <li><a href="https://gersonisai.github.io/Z-nit-Financiera-S.A./" target="_blank">Zénit Financiera S.A.</a></li>
-                        <li><a href="https://gersonisai.github.io/Z-nit-Software-Solutions-S.A./" target="_blank">Zénit Software Solutions S.A.</a></li>
-                        <li><a href="https://gersonisai.github.io/Z-nit-Agro-Industrias-S.A./" target="_blank">Zénit Agro Industrias S.A.</a></li>
-                        <li><a href="https://gersonisai.github.io/Z-nit-Cargo-Transport-S.A./" target="_blank">Zénit Cargo Transport S.A.</a></li>
-                        <li><a href="https://gersonisai.github.io/Z-nit-Hospitality-Group-S.A./" target="_blank">Zénit Hospitality Group S.A.</a></li>
-                        <li><a href="https://gersonisai.github.io/Z-nit-Pharma-S.A./" target="_blank">Zénit Pharma S.A.</a></li>
+
+                <div class="footer-section">
+                    <h4>Grupo Zénit</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://grupo-z-nit-s-a-three.vercel.app/" target="_blank">Holding Principal</a></li>
+                        <li><a href="https://z-nit-software-solutions-s-a.vercel.app/" target="_blank">Software Solutions</a></li>
+                        <li><a href="https://z-nit-agro-industrias-s-a.vercel.app/" target="_blank">Agro-Industrias</a></li>
+                        <li><a href="https://z-nit-cargo-transport-s-a.vercel.app/" target="_blank">Cargo & Transport</a></li>
+                        <li><a href="https://z-nit-hospitality-group-s-a.vercel.app/" target="_blank">Hospitality Group</a></li>
+                        <li><a href="https://z-nit-yasi-k-ari.vercel.app/" target="_blank">Yasi K'ari Legal</a></li>
+                        <li><a href="https://z-nit-pharma-s-a-xcfa.vercel.app/" target="_blank">Pharma</a></li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 ZÉNIT FINANCIERA S.A. - Todos los derechos reservados | Parte de GRUPO ZÉNIT S.A.</p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Zénit Financiera S.A. | Filial de GRUPO ZÉNIT S.A. | Supervisada por ASFI</p>
+                <div class="footer-legal">
+                    <span>Santa Cruz, La Paz, Cochabamba, Bolivia</span>
+                    <a href="mailto:gersonisaimachuaoniava@gmail.com">Contacto</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav').classList.toggle('active');
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a, .btn').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (!href || href.startsWith('mailto:') || href.startsWith('http') || href.startsWith('#')) return;
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetElement = document.querySelector(href);
-                if (!targetElement) return;
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-                document.querySelector('nav').classList.remove('active');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'var(--bg-white)';
+                    navLinks.style.padding = '2rem';
+                    navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                    navLinks.style.zIndex = '999';
+                }
+            });
+        }
     </script>
 </body>
 </html>
